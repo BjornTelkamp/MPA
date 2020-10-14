@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-8 mb-8">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="{{ $product->img }}" alt="" style="width: 500px;"></a>
+                    <a href="#"><img class="card-img-top" src="{{ $product->img }}" alt="" style="width: 50%; margin: auto;display: block"></a>
                     <div class="card-body">
                         <h6 class="card-title">
                             <p href="/product/{{ $product->id }}" style="font-weight: bold">{{ $product->name }}</p>

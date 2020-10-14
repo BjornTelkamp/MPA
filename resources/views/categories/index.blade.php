@@ -54,7 +54,7 @@
                                         </h6>
                                         <p class="card-text" style="font-size: 12px">{{ $product->description }}</p>
                                         <hr>
-                                        <h6>${{ $product->price }}</h6>
+                                        <h6 style="font-weight: bold">${{ $product->price }}</h6>
                                     </div>
                                     <div class="card-footer">
                                         <a href="{{ route('product.addToCart', ['id' => $product->id]) }}"
