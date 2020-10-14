@@ -48,13 +48,13 @@ class ShoppingCartController extends Controller
      * Display the specified resource.
      *
      * @param  \App\ShoppingCart  $shoppingCart
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      * @return \Illuminate\Http\Response
      */
     public function show(ShoppingCart $shoppingCart)
     {
         return view('cart.show');
     }
-
 
     public function getAddToCart(Request $request, $id)
     {
@@ -66,20 +66,6 @@ class ShoppingCartController extends Controller
 
              return redirect()->back();
     }
-
-    public function AddRedirectBack(Request $request, $id)
-    {
-        $product = Product::find($id);
-        $cart = new ShoppingCart();
-        $cart->add($product, $product->id);
-
-        $request->session()->put('cart', $cart);
-        return redirect()->back();
-
-//        return view('categories.index');
-    }
-
-
 
     // Remove one item from the cart in the session
     public function getReduceByOne($id)

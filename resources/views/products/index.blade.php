@@ -10,14 +10,14 @@
                     <a href="#"><img class="card-img-top" src="{{ $product->img }}" alt="" style="width: 500px;"></a>
                     <div class="card-body">
                         <h6 class="card-title">
-                            <p href="/product/{{ $product->id }}">{{ $product->name }}</p>
+                            <p href="/product/{{ $product->id }}" style="font-weight: bold">{{ $product->name }}</p>
                         </h6>
                         <p class="card-text" style="font-size: 12px">{{ $product->description }}</p>
                         <hr>
-                        <h6>${{ $product->price }}</h6>
+                        <h6 style="font-weight: bold">${{ $product->price }}</h6>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('product.addToCart', ['id' => $product->id]) }}">Add to cart</a>
+                        <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-primary pull-left">Add to cart</a>
                     </div>
                 </div>
             </div>

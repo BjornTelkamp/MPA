@@ -16,20 +16,23 @@
                         <ul class="list-group">
                             @foreach($order->cart->items as $item)
                                 <li class="list-group-item">
-                                    <span class="badge">${{ $item['price'] }}</span>
-                                    {{ $item['item']['title'] }} | {{ $item['qty'] }} Units
+
+{{--                                    @dd($item)--}}
+                                     {{$item['item']['name']}} <span style="float: right"> Quantity: {{ $item['qty'] }}</span><br>
+                                    <span class="badge" style="padding-left: 0px">Price ${{ $item['price'] }}</span>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                     <div class="panel-footer">
-                        <strong>Total price: ${{ $order->cart->totalPrice }}</strong>
+                        <strong style="font-weight: bold">Total price: ${{ $order->cart->totalPrice }}</strong>
                     </div>
                 </div>
                 <br>
             @endforeach
-            <a href="{{ route('auth.logout') }}">Logout</a>
-            <a href="{{ route('product.shoppingCart') }}">Shopping Cart</a>
+            <a href="{{ route('product.shoppingCart') }}">Shopping Cart</a><br>
+            <a href="{{ route('auth.logout') }}" style="padding-bottom: 50px">Logout</a>
+
         </div>
     </div>
     </div>
