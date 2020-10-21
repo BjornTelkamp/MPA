@@ -39,7 +39,7 @@ class UserController extends Controller
             return redirect()->to($oldUrl);
         }
 
-        return redirect()->route('auth.profile');
+        return redirect()->route('categories.index');
     }
 
 // Returns view to login page
@@ -68,7 +68,7 @@ class UserController extends Controller
                 Session::forget('oldUrl');
                 return redirect()->to($oldUrl);
             }
-            return redirect()->route('auth.profile');
+            return redirect()->route('categories.index');
         }
         return redirect()->back();
     }
