@@ -26,7 +26,7 @@ class ShoppingCart extends Model
     }
 
     // Add one item by id to the cart
-    public function add ($item, $id)
+    public function add ($item, $id, $qty)
     {
         $storedItem = ['qty' => 0, 'price' => $item->price, 'item' => $item];
         if ($this->items) {
@@ -34,11 +34,11 @@ class ShoppingCart extends Model
                 $storedItem = $this->items[$id];
             }
         }
-        $storedItem['qty']++;
+        $storedItem['qty']+= $qty;
         $storedItem['price'] = $item->price * $storedItem['qty'];
         $this->items[$id] = $storedItem;
-        $this->totalQty++;
-        $this->totalPrice += $item->price;
+        $this->totalQty+= $qty;
+        $this->totalPrice += $item->price * $qty;
     }
 
     // Remove one item from the cart by id

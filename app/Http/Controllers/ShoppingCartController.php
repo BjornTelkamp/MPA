@@ -56,11 +56,18 @@ class ShoppingCartController extends Controller
         return view('cart.show');
     }
 
-    public function getAddToCart(Request $request, $id)
+    /**
+     * @param Request $request
+     * @param $id
+     * @param $qty
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function getAddToCart(Request $request, $id, $qty = null)
     {
         $product = Product::find($id);
         $cart = new ShoppingCart();
-        $cart->add($product, $product->id);
+        $product->qty = $request->input('qty');
+        $cart->add($product, $product->id, $product->qty);
 
         $request->session()->put('cart', $cart);
 
@@ -68,6 +75,11 @@ class ShoppingCartController extends Controller
     }
 
     // Remove one item from the cart in the session
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getReduceByOne($id)
     {
         $cart = new ShoppingCart();
@@ -83,6 +95,11 @@ class ShoppingCartController extends Controller
     }
 
     // Remove all items from the cart in the session
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getRemoveItem($id)
     {
         $cart = new ShoppingCart();
@@ -98,6 +115,12 @@ class ShoppingCartController extends Controller
     }
 
     // Increase item by one from the cart in the session
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getIncreaseByOne(Request $request, $id)
     {
         // Finds item
@@ -115,6 +138,10 @@ class ShoppingCartController extends Controller
     }
 
     // Get data from the current cart in the session
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getCart()
     {
         // If cart exists, return it to te view
@@ -127,6 +154,10 @@ class ShoppingCartController extends Controller
     }
 
     // Return to view with data form the cart in the session, otherwise return to the shopping cart.
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getCheckout()
     {
         if (!Session::has('cart')) {
@@ -138,6 +169,11 @@ class ShoppingCartController extends Controller
     }
 
     // Return to view if al required input fields are filled, otherwise return to view (and try again)
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postCheckout(Request $request)
     {
         if (!Session::has('cart')) {

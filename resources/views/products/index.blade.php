@@ -17,7 +17,11 @@
                         <h6 style="font-weight: bold">${{ $product->price }}</h6>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-primary pull-left">Add to cart</a>
+                        <form action="{{ route('product.addToCart', ['id' => $product->id, 'qty' => $product->qty]) }}" method="get">
+                            <input type="number" min="1" max="99"  value="1" name="qty">
+                            <input type="submit" value="Add to Cart" class="btn btn-primary pull-left">
+
+                        </form>
                     </div>
                 </div>
             </div>
