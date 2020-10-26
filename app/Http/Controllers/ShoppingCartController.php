@@ -121,14 +121,15 @@ class ShoppingCartController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function getIncreaseByOne(Request $request, $id)
+    public function getIncreaseByOne(Request $request, $id, $qty=1)
     {
         // Finds item
         $product = Product::find($id);
+        $product->qty = $qty;
         // Make new Cart class from existing cart ----------
         $cart = new ShoppingCart();
         // Add item with item id to the existing cart
-        $cart->add($product, $product->id);
+        $cart->add($product, $product->id, $product->qty);
 
         // If no cart exists make and or update existing cart in session
         $request->session()->put('cart', $cart);
