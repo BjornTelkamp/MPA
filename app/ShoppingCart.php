@@ -39,6 +39,7 @@ class ShoppingCart extends Model
         $this->items[$id] = $storedItem;
         $this->totalQty+= $qty;
         $this->totalPrice += $item->price * $qty;
+
     }
 
     // Remove one item from the cart by id

@@ -71,7 +71,7 @@ class ShoppingCartController extends Controller
 
         $request->session()->put('cart', $cart);
 
-             return redirect()->back();
+             return redirect('/');
     }
 
     // Remove one item from the cart in the session
