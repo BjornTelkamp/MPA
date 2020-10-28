@@ -26,6 +26,12 @@ class ShoppingCart extends Model
     }
 
     // Add one item by id to the cart
+
+    /**
+     * @param $item
+     * @param $id
+     * @param $qty
+     */
     public function add ($item, $id, $qty)
     {
         $storedItem = ['qty' => 0, 'price' => $item->price, 'item' => $item];
@@ -39,10 +45,13 @@ class ShoppingCart extends Model
         $this->items[$id] = $storedItem;
         $this->totalQty+= $qty;
         $this->totalPrice += $item->price * $qty;
-
     }
 
     // Remove one item from the cart by id
+
+    /**
+     * @param $id
+     */
     public function reduceOne ($id)
     {
         $this->items[$id]['qty']--;
@@ -55,6 +64,10 @@ class ShoppingCart extends Model
     }
 
     // Remove all items from the cart by id
+
+    /**
+     * @param $id
+     */
     public function removeItem($id)
     {
         $this->totalQty -= $this->items[$id]['qty'];

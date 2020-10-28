@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
 use Illuminate\Http\response;
+
 
 class ProductsController extends Controller
 {
@@ -17,4 +19,7 @@ class ProductsController extends Controller
 
         return view('products.index',['product'=> $product]);
     }
+
+
 }
+

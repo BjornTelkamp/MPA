@@ -17,11 +17,6 @@ use App\Product;
 
 Route::get('/', 'CategoriesController@index');
 
-//Route::get('/categories', 'CategoriesController@index');
-
-//Route::get('/categories/{category}', 'CategoriesController@show');
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -31,15 +26,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/categories/{category}', function ($id){
-
-    $categories = Category::get();
-
-    $products = App\Product::leftJoin('category_product', function($join) {$join->on('category_product.product_id', '=', 'products.id');})->where('category_product.category_id', $id)->get();
-
-    return view('categories.index', ['products' => $products], ['categories'=>$categories]);
-
-});
+Route::get('/categories/{category}', 'CategoriesController@show');
 
 Route::get('/product/{product}', 'ProductsController@index');
 

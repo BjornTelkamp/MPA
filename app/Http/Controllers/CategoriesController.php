@@ -13,25 +13,24 @@ class CategoriesController extends Controller
         $categories = Category::get();
         $products = Product::all();
 
-//        dd($category);
-
         return view('categories.index', ['categories'=>$categories],['products'=> $products]
         );
     }
 
-    public function show()
+    public function show(Category $category)
     {
-
+//        dd($product);
+        $categories = Category::get();
+//        dd($product);
+//        $category = $request['category'];
+//        dd($request['category']);
+        return view('categories.show', ['category'=> $category], ['categories'=>$categories]);
     }
 }
 
 
-//        $categories = Category::get();
+//$categories = Category::get();
 //
-//        $products = Product::select('products.*', 'category_product.*', 'categories.*')
-//                    ->LeftJoin('categories', 'products.id', '=','categories.id')
-//                    ->LeftJoin('category_product', 'category_product.category_id', '=','product_id')
-//                    ->where('category_product.category_id', $id)->get();
+//$products = App\Product::leftJoin('category_product', function($join) {$join->on('category_product.product_id', '=', 'products.id');})->where('category_product.category_id', $id)->get();
 //
-//        return view('categories.show', ['categories' => $categories],['products'=> $products]
-//        );
+//return view('categories.index', ['products' => $products], ['categories'=>$categories]);

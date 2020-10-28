@@ -5,10 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-//    public $table = 'products';
-
-    public function Category()
+//    protected $table = 'products';
+    public function categories()
     {
-        return $this->belongsToMany(Product::class);
+
+        return $this->belongsToMany('App\Category');
     }
 }
